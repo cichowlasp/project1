@@ -1,0 +1,14 @@
+.sidebar-container {
+	.sidebar-link {
+		display: flex;
+		justify-content: center;
+		padding: 1rem;
+		text-decoration: none;
+		text-transform: uppercase;
+		color: black;
+		font-weight: 500;
+		&:hover {
+			background-color: rgba(188, 188, 188, 0.3);
+		}
+	}
+}

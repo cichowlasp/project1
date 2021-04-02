@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Grid, Paper } from '@material-ui/core';
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from '../Home/Home';
 import Feed from '../Feed/Feed';
 import SidebarContent from '../SidebarConetent/SidebarContent';
@@ -11,9 +10,7 @@ const Router = () => {
 		<BrowserRouter>
 			<div className='container'>
 				<div className='sidebar'>
-					<div>
-						<SidebarContent />
-					</div>
+					<SidebarContent />
 				</div>
 				<div className='title-content-container'>
 					<div className='title'>
@@ -22,10 +19,10 @@ const Router = () => {
 					<div className='content'>
 						<Switch>
 							<Route path='/feed'>
-								<Feed />
+								<Feed setTitle={setTitle} />
 							</Route>
 							<Route path='/'>
-								<Home />
+								<Home setTitle={setTitle} />
 							</Route>
 						</Switch>
 					</div>

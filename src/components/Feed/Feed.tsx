@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-const Feed = () => {
-	return <h1>Feed</h1>;
+interface FuncProps {
+	setTitle(arg: string): void;
+}
+
+const Feed: React.FC<FuncProps> = ({ setTitle }) => {
+	useEffect(() => {
+		setTitle('Collection');
+	}, [setTitle]);
+	return <></>;
 };
 
 export default Feed;

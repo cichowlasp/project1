@@ -1,0 +1,16 @@
+.form-container {
+	display: flex;
+	width: fit-content;
+	flex-direction: column;
+	justify-content: space-evenly;
+	.fields-container {
+		height: 40%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+	.button-container {
+		display: flex;
+		justify-content: space-evenly;
+	}
+}
