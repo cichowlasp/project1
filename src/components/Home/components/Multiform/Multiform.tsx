@@ -7,12 +7,19 @@ import './Multiform.scss';
 
 const Multiform: React.FC = () => {
 	const [step, setStep] = useState(1);
+	const [data, setData] = useState({
+		brand: '',
+		model: '',
+		productionDate: new Date(),
+		vehicleOperation: 0,
+		fuelType: '',
+	});
 	const returnStep = () => {
 		switch (step) {
 			case 1:
-				return <StepOne />;
+				return <StepOne data={data} setData={setData} />;
 			case 2:
-				return <StepTwo />;
+				return <StepTwo data={data} setData={setData} />;
 			case 3:
 				return <StepThree />;
 			default:
@@ -35,7 +42,11 @@ const Multiform: React.FC = () => {
 					color='secondary'>
 					Back
 				</Button>
-				<Button onClick={nextStep} variant='contained' color='primary'>
+				<Button
+					onClick={nextStep}
+					disabled={step === 3 ? true : false}
+					variant='contained'
+					color='primary'>
 					Next
 				</Button>
 			</div>

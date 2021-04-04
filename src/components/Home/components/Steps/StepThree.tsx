@@ -21,7 +21,7 @@ const StepThree: React.FC = () => {
 						color='primary'
 					/>
 				}
-				label='Serviced at an authorized service station'
+				label='Serviced at an ASS'
 			/>
 			<div></div>
 			<TextField label='Condition' />
