@@ -10,6 +10,12 @@ interface FuncProps {
 		productionDate: Date | Moment | null;
 		vehicleOperation: number;
 		fuelType: string;
+		gearbox: string;
+		cubicCapacity: number;
+		accidentFree: boolean;
+		servicedASS: boolean;
+		color: string;
+		condition: string;
 	};
 }
 
@@ -28,7 +34,6 @@ const StepTwo: React.FC<FuncProps> = ({ data, setData }) => {
 			/>
 			<Select
 				native
-				label={'Fuel type'}
 				value={data.fuelType}
 				onChange={(event) =>
 					setData({
@@ -43,8 +48,31 @@ const StepTwo: React.FC<FuncProps> = ({ data, setData }) => {
 				<option value={'petrol'}>Petrol</option>
 				<option value={'petrol+gas'}>Petrol+gas</option>
 			</Select>
-			<TextField label='Gearbox' />
-			<TextField label='Cubic capacity' />
+			<Select
+				native
+				value={data.gearbox}
+				onChange={(event) =>
+					setData({
+						...data,
+						gearbox: event.target.value,
+					})
+				}
+				inputProps={{
+					name: 'Fuel type',
+				}}>
+				<option value={'manual'}>Manual</option>
+				<option value={'automat'}>Automatic</option>
+			</Select>
+			<TextField
+				label='Cubic capacity'
+				onChange={(event) =>
+					setData({
+						...data,
+						cubicCapacity: event.target.value,
+					})
+				}
+				value={data.cubicCapacity}
+			/>
 		</>
 	);
 };

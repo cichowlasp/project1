@@ -11,6 +11,12 @@ interface FuncProps {
 		productionDate: Date | Moment | null;
 		vehicleOperation: number;
 		fuelType: string;
+		gearbox: string;
+		cubicCapacity: number;
+		accidentFree: boolean;
+		servicedASS: boolean;
+		color: string;
+		condition: string;
 	};
 }
 
