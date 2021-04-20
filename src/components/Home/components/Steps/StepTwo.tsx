@@ -23,11 +23,12 @@ const StepTwo: React.FC<FuncProps> = ({ data, setData }) => {
 	return (
 		<>
 			<TextField
+				name='vehicleOperation'
 				label='Vehicle operation'
 				onChange={(event) =>
 					setData({
 						...data,
-						vehicleOperation: event.target.value,
+						vehicleOperation: parseInt(event.target.value, 10),
 					})
 				}
 				value={data.vehicleOperation}

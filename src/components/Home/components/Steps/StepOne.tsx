@@ -5,6 +5,20 @@ import { Moment } from 'moment';
 
 interface FuncProps {
 	setData(arg1: any): void;
+	validateInput(event: any): void;
+	errors: {
+		brand: string;
+		model: string;
+		productionDate: string;
+		vehicleOperation: string;
+		fuelType: string;
+		gearbox: string;
+		cubicCapacity: string;
+		accidentFree: string;
+		servicedASS: string;
+		color: string;
+		condition: string;
+	};
 	data: {
 		brand: string;
 		model: string;
@@ -20,28 +34,41 @@ interface FuncProps {
 	};
 }
 
-const StepOne: React.FC<FuncProps> = ({ data, setData }) => {
+const StepOne: React.FC<FuncProps> = ({
+	data,
+	validateInput,
+	errors,
+	setData,
+}) => {
 	return (
 		<>
 			<TextField
 				label='Brand'
+				name='brand'
 				value={data.brand}
-				onChange={(event) =>
+				error={errors.brand !== ''}
+				helperText={errors.brand}
+				onChange={(event) => {
 					setData({
 						...data,
 						brand: event.target.value,
-					})
-				}
+					});
+					validateInput(event);
+				}}
 			/>
 			<TextField
 				label='Model'
+				name='model'
+				error={errors.model !== ''}
+				helperText={errors.model}
 				value={data.model}
-				onChange={(event) =>
+				onChange={(event) => {
 					setData({
 						...data,
 						model: event.target.value,
-					})
-				}
+					});
+					validateInput(event);
+				}}
 			/>
 
 			<KeyboardDatePicker
@@ -50,6 +77,7 @@ const StepOne: React.FC<FuncProps> = ({ data, setData }) => {
 				label='Production Date'
 				format='DD/MM/yyyy'
 				value={data.productionDate}
+				disableFuture
 				InputAdornmentProps={{ position: 'start' }}
 				onChange={(date) =>
 					setData({

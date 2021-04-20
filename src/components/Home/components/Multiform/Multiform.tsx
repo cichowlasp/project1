@@ -7,7 +7,22 @@ import './Multiform.scss';
 
 const Multiform: React.FC = () => {
 	const [step, setStep] = useState(1);
+	const [message, setMessage] = useState('');
 	const [open, setOpen] = useState(false);
+	const [error, setError] = useState(true);
+	const [errors, setErrors] = useState({
+		brand: '',
+		model: '',
+		productionDate: '',
+		vehicleOperation: '',
+		fuelType: '',
+		gearbox: '',
+		cubicCapacity: '',
+		accidentFree: '',
+		servicedASS: '',
+		color: '',
+		condition: '',
+	});
 	const [data, setData] = useState({
 		brand: '',
 		model: '',
@@ -22,10 +37,59 @@ const Multiform: React.FC = () => {
 		condition: '',
 	});
 
+	const checkIfError = (tempErrors: any) => {
+		for (const error in tempErrors) {
+			if (tempErrors[error].length !== 0) {
+				return true;
+			}
+		}
+		return false;
+	};
+	const validateObject = () => {
+		if (step === 1 && (data.brand === '' || data.model === '')) {
+			return false;
+		}
+		return true;
+	};
+	const validateInput = (event: any) => {
+		const { name, value } = event.target;
+		let tempErrors = errors;
+
+		switch (name) {
+			case 'brand':
+				tempErrors.brand =
+					value.length === 0 ? "This field can't be empty" : '';
+				break;
+			case 'model':
+				tempErrors.model =
+					value.length === 0 ? "This field can't be empty" : '';
+				break;
+			case 'vehicleOperation':
+				tempErrors.vehicleOperation =
+					value === 0 || value < 0
+						? "Number can't be lower or equal 0"
+						: '';
+				break;
+			default:
+				break;
+		}
+		setErrors(tempErrors);
+		setError(checkIfError(tempErrors));
+		console.log(errors);
+		console.log(error);
+	};
+
 	const returnStep = () => {
 		switch (step) {
 			case 1:
-				return <StepOne data={data} setData={setData} />;
+				return (
+					<StepOne
+						data={data}
+						validateInput={validateInput}
+						errors={errors}
+						setData={setData}
+					/>
+				);
 			case 2:
 				return <StepTwo data={data} setData={setData} />;
 			case 3:
@@ -34,7 +98,13 @@ const Multiform: React.FC = () => {
 		}
 	};
 	const nextStep = () => {
-		setStep(step + 1);
+		console.log(validateObject());
+		if (validateObject()) {
+			setMessage(' ');
+			setStep(step + 1);
+		} else {
+			setMessage('check if all fields are filled!');
+		}
 	};
 	const previousStep = () => {
 		setStep(step - 1);
@@ -80,7 +150,7 @@ const Multiform: React.FC = () => {
 				{step !== 3 ? (
 					<Button
 						onClick={nextStep}
-						disabled={step === 3 ? true : false}
+						disabled={step === 3 || error ? true : false}
 						variant='contained'
 						color='primary'>
 						Next
@@ -94,6 +164,7 @@ const Multiform: React.FC = () => {
 					</Button>
 				)}
 			</div>
+			<div className='message'>{message}</div>
 			<Snackbar
 				open={open}
 				autoHideDuration={6000}
