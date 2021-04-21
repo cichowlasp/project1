@@ -4,11 +4,12 @@ import { KeyboardDatePicker } from '@material-ui/pickers';
 import { Controller } from 'react-hook-form';
 
 interface FuncProps {
-	register(name: string): void;
+	register: any;
 	control: any;
 	getValues: any;
 	watch: any;
 	setValue: any;
+	errors: any;
 }
 
 const StepOne: React.FC<FuncProps> = ({
@@ -17,18 +18,42 @@ const StepOne: React.FC<FuncProps> = ({
 	getValues,
 	watch,
 	setValue,
+	errors,
 }) => {
 	return (
 		<>
 			<TextField
 				label='Brand'
+				error={errors.brand}
+				key={'brand'}
 				defaultValue={getValues('brand')}
-				{...register('brand')}
+				{...register('brand', {
+					required: true,
+					minLength: 3,
+					maxLength: 20,
+				})}
+				onChange={(event) =>
+					setValue('brand', event.target.value, {
+						shouldValidate: errors.brand ? true : false,
+					})
+				}
 			/>
+
 			<TextField
+				key={'model'}
 				defaultValue={getValues('model')}
+				error={errors.model}
 				label='Model'
-				{...register('model')}
+				{...register('model', {
+					required: true,
+					minLength: 3,
+					maxLength: 20,
+				})}
+				onChange={(event) =>
+					setValue('model', event.target.value, {
+						shouldValidate: errors.model ? true : false,
+					})
+				}
 			/>
 			<Controller
 				name='productionDate'

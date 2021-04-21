@@ -26,13 +26,11 @@ const Feed: React.FC<FuncProps> = ({ setTitle }) => {
 		setTitle('Collection');
 	}, [setTitle]);
 	return (
-		<>
-			<div className='cards-container'>
-				{fetchedData.map((car: data) => {
-					return <h1>{`${car.brand} ${car.model}`}</h1>;
-				})}
-			</div>
-		</>
+		<div className='cards-container'>
+			{fetchedData.map((car: data) => {
+				return <h1>{`${car.brand} ${car.model}`}</h1>;
+			})}
+		</div>
 	);
 };
 

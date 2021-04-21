@@ -8,12 +8,20 @@ import {
 import { Controller } from 'react-hook-form';
 
 interface FuncProps {
-	register(name: string): void;
+	register: any;
 	control: any;
 	getValues: any;
+	errors: any;
+	setValue: any;
 }
 
-const StepThree: React.FC<FuncProps> = ({ register, control, getValues }) => {
+const StepThree: React.FC<FuncProps> = ({
+	register,
+	control,
+	getValues,
+	errors,
+	setValue,
+}) => {
 	return (
 		<>
 			<Controller
@@ -55,9 +63,11 @@ const StepThree: React.FC<FuncProps> = ({ register, control, getValues }) => {
 			<Controller
 				name='condition'
 				control={control}
+				rules={{ required: true }}
 				render={({ field }) => (
 					<TextField
 						select
+						error={errors.condition}
 						defaultValue={getValues('condition')}
 						helperText={'Please select an option'}
 						{...field}
@@ -75,9 +85,16 @@ const StepThree: React.FC<FuncProps> = ({ register, control, getValues }) => {
 				)}
 			/>
 			<TextField
+				key={'color'}
 				defaultValue={getValues('color')}
+				error={errors.color}
 				label='Color'
-				{...register('color')}
+				{...register('color', { required: true, maxLength: 20 })}
+				onChange={(event) =>
+					setValue('color', event.target.value, {
+						shouldValidate: errors.color ? true : false,
+					})
+				}
 			/>
 		</>
 	);

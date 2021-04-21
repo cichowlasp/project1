@@ -17,6 +17,7 @@ const Multiform: React.FC = () => {
 		watch,
 		setValue,
 		reset,
+		formState: { errors },
 	} = useForm();
 
 	const returnStep = () => {
@@ -29,6 +30,7 @@ const Multiform: React.FC = () => {
 						getValues={getValues}
 						watch={watch}
 						setValue={setValue}
+						errors={errors}
 					/>
 				);
 			case 2:
@@ -37,6 +39,8 @@ const Multiform: React.FC = () => {
 						register={register}
 						control={control}
 						getValues={getValues}
+						setValue={setValue}
+						errors={errors}
 					/>
 				);
 			case 3:
@@ -45,6 +49,8 @@ const Multiform: React.FC = () => {
 						register={register}
 						control={control}
 						getValues={getValues}
+						setValue={setValue}
+						errors={errors}
 					/>
 				);
 			default:
@@ -54,12 +60,13 @@ const Multiform: React.FC = () => {
 		event.preventDefault();
 		setStep(step + 1);
 	};
-	const previousStep = () => {
+	const previousStep = (event: any) => {
 		setStep(step - 1);
 	};
 	const saveData = (data: any) => {
 		const savedData = JSON.parse(localStorage.getItem('data') || '[]');
 		localStorage.setItem('data', JSON.stringify([...savedData, data]));
+		console.log(data);
 		reset();
 		setStep(1);
 		setOpen(true);
@@ -77,7 +84,7 @@ const Multiform: React.FC = () => {
 			<div className='fields-container'>{returnStep()}</div>
 			<div className='button-container'>
 				<Button
-					onClick={previousStep}
+					onClick={(event) => previousStep(event)}
 					disabled={step === 1 ? true : false}
 					variant='contained'
 					color='secondary'>
@@ -85,7 +92,7 @@ const Multiform: React.FC = () => {
 				</Button>
 				{step !== 3 ? (
 					<Button
-						type='button'
+						type='submit'
 						onClick={(event) => nextStep(event)}
 						disabled={step === 3 ? true : false}
 						variant='contained'
