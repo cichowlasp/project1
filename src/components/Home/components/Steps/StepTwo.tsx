@@ -1,78 +1,68 @@
 import React from 'react';
-import { TextField, Select } from '@material-ui/core';
-import { Moment } from 'moment';
+import { TextField, MenuItem } from '@material-ui/core';
+import { Controller } from 'react-hook-form';
 
 interface FuncProps {
-	setData(arg1: any): void;
-	data: {
-		brand: string;
-		model: string;
-		productionDate: Date | Moment | null;
-		vehicleOperation: number;
-		fuelType: string;
-		gearbox: string;
-		cubicCapacity: number;
-		accidentFree: boolean;
-		servicedASS: boolean;
-		color: string;
-		condition: string;
-	};
+	register(name: string): void;
+	control: any;
+	getValues: any;
 }
 
-const StepTwo: React.FC<FuncProps> = ({ data, setData }) => {
+const StepTwo: React.FC<FuncProps> = ({ register, control, getValues }) => {
 	return (
 		<>
 			<TextField
-				name='vehicleOperation'
+				{...register('vehicleOperation')}
 				label='Vehicle operation'
-				onChange={(event) =>
-					setData({
-						...data,
-						vehicleOperation: parseInt(event.target.value, 10),
-					})
-				}
-				value={data.vehicleOperation}
+				defaultValue={getValues('vehicleOperation')}
 			/>
-			<Select
-				native
-				value={data.fuelType}
-				onChange={(event) =>
-					setData({
-						...data,
-						fuelType: event.target.value,
-					})
-				}
-				inputProps={{
-					name: 'Fuel type',
-				}}>
-				<option value={'disel'}>Disel</option>
-				<option value={'petrol'}>Petrol</option>
-				<option value={'petrol+gas'}>Petrol+gas</option>
-			</Select>
-			<Select
-				native
-				value={data.gearbox}
-				onChange={(event) =>
-					setData({
-						...data,
-						gearbox: event.target.value,
-					})
-				}
-				inputProps={{
-					name: 'Fuel type',
-				}}>
-				<option value={'manual'}>Manual</option>
-				<option value={'automat'}>Automatic</option>
-			</Select>
+			<Controller
+				name='fuelType'
+				control={control}
+				render={({ field }) => (
+					<TextField
+						label='Type of fuel'
+						defaultValue={getValues('fuelType')}
+						select
+						{...field}
+						inputProps={{
+							name: 'Fuel type',
+						}}>
+						<MenuItem value={'disel'}>Disel</MenuItem>
+						<MenuItem value={'petrol'}>Petrol</MenuItem>
+						<MenuItem value={'petrol+gas'}>Petrol+gas</MenuItem>
+					</TextField>
+				)}
+			/>
+
+			<Controller
+				name='gearbox'
+				control={control}
+				render={({ field }) => (
+					<TextField
+						select
+						helperText={'Please select an option'}
+						defaultValue={getValues('gearbox')}
+						{...field}
+						label='Gearbox'
+						inputProps={{
+							name: 'Fuel type',
+						}}>
+						<MenuItem key={'manual'} value={'manual'}>
+							Manual
+						</MenuItem>
+						<MenuItem value={'automat'} key={'automat'}>
+							Automatic
+						</MenuItem>
+					</TextField>
+				)}
+			/>
+
 			<TextField
 				label='Cubic capacity'
-				onChange={(event) =>
-					setData({
-						...data,
-						cubicCapacity: event.target.value,
-					})
-				}
-				value={data.cubicCapacity}
+				name='cubicCapacity'
+				defaultValue={getValues('cubicCapacity')}
+				{...register('cubicCapacity')}
 			/>
 		</>
 	);

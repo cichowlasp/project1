@@ -3,86 +3,81 @@ import {
 	TextField,
 	FormControlLabel,
 	Checkbox,
-	Select,
+	MenuItem,
 } from '@material-ui/core';
-import { Moment } from 'moment';
+import { Controller } from 'react-hook-form';
+
 interface FuncProps {
-	setData(arg1: any): void;
-	data: {
-		brand: string;
-		model: string;
-		productionDate: Date | Moment | null;
-		vehicleOperation: number;
-		fuelType: string;
-		gearbox: string;
-		cubicCapacity: number;
-		accidentFree: boolean;
-		servicedASS: boolean;
-		color: string;
-		condition: string;
-	};
+	register(name: string): void;
+	control: any;
+	getValues: any;
 }
 
-const StepThree: React.FC<FuncProps> = ({ data, setData }) => {
+const StepThree: React.FC<FuncProps> = ({ register, control, getValues }) => {
 	return (
 		<>
-			<FormControlLabel
-				control={
-					<Checkbox
-						checked={data.accidentFree}
-						name='Accident-free'
-						color='primary'
-						onChange={() => {
-							setData({
-								...data,
-								accidentFree: !data.accidentFree,
-							});
-						}}
+			<Controller
+				name='accidentFree'
+				control={control}
+				render={({ field }) => (
+					<FormControlLabel
+						control={
+							<Checkbox
+								checked={getValues('accidentFree')}
+								{...field}
+								name='Accident-free'
+								color='primary'
+							/>
+						}
+						label='Accident-free'
 					/>
-				}
-				label='Accident-free'
+				)}
 			/>
-			<FormControlLabel
-				control={
-					<Checkbox
-						checked={data.servicedASS}
-						name='Serviced at an authorized service station'
-						color='primary'
-						onChange={() => {
-							setData({
-								...data,
-								servicedASS: !data.servicedASS,
-							});
-						}}
+
+			<Controller
+				name='servicedASS'
+				control={control}
+				render={({ field }) => (
+					<FormControlLabel
+						control={
+							<Checkbox
+								checked={getValues('servicedASS')}
+								{...field}
+								name='Serviced at an authorized service station'
+								color='primary'
+							/>
+						}
+						label='Serviced at an ASS'
 					/>
-				}
-				label='Serviced at an ASS'
+				)}
 			/>
-			<div></div>
-			<Select
-				native
-				value={data.condition}
-				onChange={(event) =>
-					setData({
-						...data,
-						condition: event.target.value,
-					})
-				}
-				inputProps={{
-					name: 'condition',
-				}}>
-				<option value={'new'}>New</option>
-				<option value={'used'}>Used</option>
-			</Select>
+
+			<Controller
+				name='condition'
+				control={control}
+				render={({ field }) => (
+					<TextField
+						select
+						defaultValue={getValues('condition')}
+						helperText={'Please select an option'}
+						{...field}
+						label='condition'
+						inputProps={{
+							name: 'Fuel type',
+						}}>
+						<MenuItem key={'new'} value={'new'}>
+							New
+						</MenuItem>
+						<MenuItem value={'used'} key={'used'}>
+							Used
+						</MenuItem>
+					</TextField>
+				)}
+			/>
 			<TextField
+				defaultValue={getValues('color')}
 				label='Color'
-				onChange={(event) =>
-					setData({
-						...data,
-						color: event.target.value,
-					})
-				}
-				value={data.color}
+				{...register('color')}
 			/>
 		</>
 	);
