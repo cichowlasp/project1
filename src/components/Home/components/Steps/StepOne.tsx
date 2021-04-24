@@ -10,6 +10,7 @@ interface FuncProps {
 	watch: any;
 	setValue: any;
 	errors: any;
+	validation: boolean;
 }
 
 const StepOne: React.FC<FuncProps> = ({
@@ -19,6 +20,7 @@ const StepOne: React.FC<FuncProps> = ({
 	watch,
 	setValue,
 	errors,
+	validation,
 }) => {
 	return (
 		<>
@@ -26,6 +28,11 @@ const StepOne: React.FC<FuncProps> = ({
 				label='Brand'
 				error={errors.brand}
 				key={'brand'}
+				helperText={
+					errors.brand
+						? 'This field is required(min 3 letters and max 20)'
+						: ''
+				}
 				defaultValue={getValues('brand')}
 				{...register('brand', {
 					required: true,
@@ -34,7 +41,7 @@ const StepOne: React.FC<FuncProps> = ({
 				})}
 				onChange={(event) =>
 					setValue('brand', event.target.value, {
-						shouldValidate: errors.brand ? true : false,
+						shouldValidate: validation,
 					})
 				}
 			/>
@@ -44,6 +51,11 @@ const StepOne: React.FC<FuncProps> = ({
 				defaultValue={getValues('model')}
 				error={errors.model}
 				label='Model'
+				helperText={
+					errors.model
+						? 'This field is required(min 3 letters and max 20)'
+						: ''
+				}
 				{...register('model', {
 					required: true,
 					minLength: 3,
@@ -51,7 +63,7 @@ const StepOne: React.FC<FuncProps> = ({
 				})}
 				onChange={(event) =>
 					setValue('model', event.target.value, {
-						shouldValidate: errors.model ? true : false,
+						shouldValidate: validation,
 					})
 				}
 			/>

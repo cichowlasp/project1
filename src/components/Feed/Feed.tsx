@@ -1,15 +1,12 @@
 import React, { useEffect } from 'react';
 import './Feed.scss';
+import CarInfo from './components/CarInfo/CarInfo';
 import { Moment } from 'moment';
-
-interface FuncProps {
-	setTitle(arg: string): void;
-}
 
 interface data {
 	brand: string;
 	model: string;
-	productionDate: Date | Moment | null;
+	productionDate: Moment;
 	vehicleOperation: number;
 	fuelType: string;
 	gearbox: string;
@@ -20,15 +17,19 @@ interface data {
 	condition: string;
 }
 
-const Feed: React.FC<FuncProps> = ({ setTitle }) => {
-	const fetchedData = JSON.parse(localStorage.getItem('data') || '[]');
+interface FuncProps {
+	setTitle(arg: string): void;
+	fetchedData: data[];
+}
+
+const Feed: React.FC<FuncProps> = ({ setTitle, fetchedData }) => {
 	useEffect(() => {
 		setTitle('Collection');
 	}, [setTitle]);
 	return (
 		<div className='cards-container'>
 			{fetchedData.map((car: data) => {
-				return <h1>{`${car.brand} ${car.model}`}</h1>;
+				return <CarInfo car={car} />;
 			})}
 		</div>
 	);

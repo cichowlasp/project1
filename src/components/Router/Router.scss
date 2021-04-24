@@ -25,6 +25,7 @@
 		.title {
 			background-color: white;
 			margin: 1rem;
+			height: 12vh;
 			text-transform: uppercase;
 			border-radius: 10px;
 			box-shadow: 0 0 1em grey;
@@ -38,6 +39,14 @@
 			justify-content: center;
 			border-radius: 10px;
 			box-shadow: 0 0 1em grey;
+		}
+		.search {
+			width: 100%;
+
+			&:focus {
+				border-color: 1px solid blue;
+			}
+			text-align: center;
 		}
 	}
 }

@@ -9,6 +9,8 @@ import './Multiform.scss';
 const Multiform: React.FC = () => {
 	const [step, setStep] = useState(1);
 	const [open, setOpen] = useState(false);
+	const [message, setMessage] = useState('');
+	const [validation, setValidation] = useState(false);
 	const {
 		register,
 		handleSubmit,
@@ -31,6 +33,7 @@ const Multiform: React.FC = () => {
 						watch={watch}
 						setValue={setValue}
 						errors={errors}
+						validation={validation}
 					/>
 				);
 			case 2:
@@ -41,6 +44,7 @@ const Multiform: React.FC = () => {
 						getValues={getValues}
 						setValue={setValue}
 						errors={errors}
+						validation={validation}
 					/>
 				);
 			case 3:
@@ -51,6 +55,7 @@ const Multiform: React.FC = () => {
 						getValues={getValues}
 						setValue={setValue}
 						errors={errors}
+						validation={validation}
 					/>
 				);
 			default:
@@ -64,12 +69,18 @@ const Multiform: React.FC = () => {
 		setStep(step - 1);
 	};
 	const saveData = (data: any) => {
+		setValidation(false);
+		setMessage('');
 		const savedData = JSON.parse(localStorage.getItem('data') || '[]');
 		localStorage.setItem('data', JSON.stringify([...savedData, data]));
-		console.log(data);
 		reset();
 		setStep(1);
 		setOpen(true);
+	};
+
+	const onError = () => {
+		setValidation(true);
+		setMessage('Please check all the fields to correct erros');
 	};
 
 	const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
@@ -80,7 +91,9 @@ const Multiform: React.FC = () => {
 		setOpen(false);
 	};
 	return (
-		<form className='form-container' onSubmit={handleSubmit(saveData)}>
+		<form
+			className='form-container'
+			onSubmit={handleSubmit(saveData, onError)}>
 			<div className='fields-container'>{returnStep()}</div>
 			<div className='button-container'>
 				<Button
@@ -105,6 +118,7 @@ const Multiform: React.FC = () => {
 					</Button>
 				)}
 			</div>
+			<div className='message'>{message}</div>
 			<Snackbar
 				open={open}
 				autoHideDuration={6000}

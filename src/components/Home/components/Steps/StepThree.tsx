@@ -13,6 +13,7 @@ interface FuncProps {
 	getValues: any;
 	errors: any;
 	setValue: any;
+	validation: boolean;
 }
 
 const StepThree: React.FC<FuncProps> = ({
@@ -21,6 +22,7 @@ const StepThree: React.FC<FuncProps> = ({
 	getValues,
 	errors,
 	setValue,
+	validation,
 }) => {
 	return (
 		<>
@@ -69,7 +71,11 @@ const StepThree: React.FC<FuncProps> = ({
 						select
 						error={errors.condition}
 						defaultValue={getValues('condition')}
-						helperText={'Please select an option'}
+						helperText={
+							errors.condition
+								? 'This field is required(please select a option)'
+								: ''
+						}
 						{...field}
 						label='condition'
 						inputProps={{
@@ -89,10 +95,15 @@ const StepThree: React.FC<FuncProps> = ({
 				defaultValue={getValues('color')}
 				error={errors.color}
 				label='Color'
-				{...register('color', { required: true, maxLength: 20 })}
+				{...register('color', {
+					required: true,
+					minLength: 1,
+					maxLength: 20,
+				})}
+				helperText={errors.color ? 'This field is required' : ''}
 				onChange={(event) =>
 					setValue('color', event.target.value, {
-						shouldValidate: errors.color ? true : false,
+						shouldValidate: validation,
 					})
 				}
 			/>

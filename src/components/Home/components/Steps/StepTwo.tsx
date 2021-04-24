@@ -8,6 +8,7 @@ interface FuncProps {
 	getValues: any;
 	errors: any;
 	setValue: any;
+	validation: boolean;
 }
 
 const StepTwo: React.FC<FuncProps> = ({
@@ -16,23 +17,29 @@ const StepTwo: React.FC<FuncProps> = ({
 	getValues,
 	errors,
 	setValue,
+	validation,
 }) => {
 	return (
 		<>
 			<TextField
 				key={'vehicleOperation'}
 				error={errors.vehicleOperation}
-				type='number'
+				helperText={
+					errors.vehicleOperation
+						? 'This field is required(provide an number form 1 to 1000000)'
+						: ''
+				}
 				defaultValue={getValues('vehicleOperation')}
 				{...register('vehicleOperation', {
 					required: true,
+					pattern: /^[0-9]*$/i,
 					min: 1,
 					max: 1000000,
 				})}
 				label='Vehicle operation(km)'
 				onChange={(event) =>
 					setValue('vehicleOperation', event.target.value, {
-						shouldValidate: errors.vehicleOperation ? true : false,
+						shouldValidate: validation,
 					})
 				}
 			/>
@@ -45,6 +52,9 @@ const StepTwo: React.FC<FuncProps> = ({
 						label='Type of fuel'
 						defaultValue={getValues('fuelType')}
 						error={errors.fuelType}
+						helperText={
+							errors.fuelType ? 'This field is required' : ''
+						}
 						select
 						{...field}
 						inputProps={{
@@ -65,7 +75,9 @@ const StepTwo: React.FC<FuncProps> = ({
 					<TextField
 						select
 						error={errors.gearbox}
-						helperText={'Please select an option'}
+						helperText={
+							errors.gearbox ? 'This field is required' : ''
+						}
 						defaultValue={getValues('gearbox')}
 						{...field}
 						label='Gearbox'
@@ -85,17 +97,22 @@ const StepTwo: React.FC<FuncProps> = ({
 			<TextField
 				key={'cubicCapacity'}
 				label='Cubic capacity (cm3)'
-				type='number'
 				error={errors.cubicCapacity}
+				helperText={
+					errors.cubicCapacity
+						? 'This field is required(provide an number from 500 to 10000)'
+						: ''
+				}
 				defaultValue={getValues('cubicCapacity')}
 				{...register('cubicCapacity', {
 					required: true,
+					pattern: /^[0-9]*$/i,
 					min: 500,
 					max: 10000,
 				})}
 				onChange={(event) =>
 					setValue('cubicCapacity', event.target.value, {
-						shouldValidate: errors.cubicCapacity ? true : false,
+						shouldValidate: validation,
 					})
 				}
 			/>
