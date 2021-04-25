@@ -6,7 +6,11 @@ import StepTwo from '../Steps/StepTwo';
 import StepThree from '../Steps/StepThree';
 import './Multiform.scss';
 
-const Multiform: React.FC = () => {
+interface FuncProps {
+	darkMode: boolean;
+}
+
+const Multiform: React.FC<FuncProps> = ({ darkMode }) => {
 	const [step, setStep] = useState(1);
 	const [open, setOpen] = useState(false);
 	const [message, setMessage] = useState('');

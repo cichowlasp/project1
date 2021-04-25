@@ -28,6 +28,7 @@ const StepOne: React.FC<FuncProps> = ({
 				label='Brand'
 				error={errors.brand}
 				key={'brand'}
+				style={{ color: 'white' }}
 				helperText={
 					errors.brand
 						? 'This field is required(min 3 letters and max 20)'

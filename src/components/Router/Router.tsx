@@ -1,42 +1,49 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { TextField } from '@material-ui/core';
 import Home from '../Home/Home';
 import Feed from '../Feed/Feed';
 import SidebarContent from '../SidebarConetent/SidebarContent';
 import './Router.scss';
 const Router = () => {
-	const [title, setTitle] = useState('Add Car');
 	const fetchedData = JSON.parse(localStorage.getItem('data') || '[]');
+	const [title, setTitle] = useState('Add Car');
+	const [text, setText] = useState('');
+	const darkMode = JSON.parse(localStorage.getItem('darkMode') || 'true');
+
+	const filterData = (event: any) => {
+		setText(event.target.value.trim().replace(/\s/g, ''));
+	};
+
 	return (
 		<BrowserRouter>
 			<div className='container'>
-				<div className='sidebar'>
-					<SidebarContent />
+				<div className={`sidebar ${darkMode ? 'dark' : ''}`}>
+					<SidebarContent darkMode={darkMode} />
 				</div>
-				<div className='title-content-container'>
-					<div className='title'>
+				<div className={`title-content-container `}>
+					<div className={`title ${darkMode ? 'dark' : ''}`}>
 						{title === 'Collection' ? (
-							<TextField
-								className='search'
+							<input
 								placeholder='Search'
-								variant='outlined'
-								onChange={(event) => {}}
+								className={`search ${darkMode ? 'dark' : ''}`}
+								onChange={(event) => filterData(event)}
 							/>
 						) : (
 							<h1>{title}</h1>
 						)}
 					</div>
-					<div className='content'>
+					<div className={`content ${darkMode ? 'dark' : ''}`}>
 						<Switch>
 							<Route path='/feed'>
 								<Feed
 									fetchedData={fetchedData}
+									search={text}
 									setTitle={setTitle}
+									darkMode={darkMode}
 								/>
 							</Route>
 							<Route path='/'>
-								<Home setTitle={setTitle} />
+								<Home setTitle={setTitle} darkMode={darkMode} />
 							</Route>
 						</Switch>
 					</div>

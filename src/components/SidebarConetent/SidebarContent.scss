@@ -15,5 +15,9 @@
 			background-color: rgba(188, 188, 188, 0.3);
 			border-radius: 10px;
 		}
+		&.dark {
+			color: white;
+			border-color: white;
+		}
 	}
 }
