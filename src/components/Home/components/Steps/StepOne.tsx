@@ -1,5 +1,6 @@
 import React from 'react';
 import { TextField } from '@material-ui/core';
+
 import { KeyboardDatePicker } from '@material-ui/pickers';
 import { Controller } from 'react-hook-form';
 
@@ -11,6 +12,7 @@ interface FuncProps {
 	setValue: any;
 	errors: any;
 	validation: boolean;
+	darkMode: boolean;
 }
 
 const StepOne: React.FC<FuncProps> = ({
@@ -21,6 +23,7 @@ const StepOne: React.FC<FuncProps> = ({
 	setValue,
 	errors,
 	validation,
+	darkMode,
 }) => {
 	return (
 		<>

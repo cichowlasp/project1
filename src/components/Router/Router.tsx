@@ -4,11 +4,16 @@ import Home from '../Home/Home';
 import Feed from '../Feed/Feed';
 import SidebarContent from '../SidebarConetent/SidebarContent';
 import './Router.scss';
-const Router = () => {
+
+interface FuncProps {
+	darkMode: boolean;
+	setDarkMode(arg: boolean): void;
+}
+
+const Router: React.FC<FuncProps> = ({ darkMode, setDarkMode }) => {
 	const fetchedData = JSON.parse(localStorage.getItem('data') || '[]');
 	const [title, setTitle] = useState('Add Car');
 	const [text, setText] = useState('');
-	const darkMode = JSON.parse(localStorage.getItem('darkMode') || 'true');
 
 	const filterData = (event: any) => {
 		setText(event.target.value.trim().replace(/\s/g, ''));
@@ -18,7 +23,10 @@ const Router = () => {
 		<BrowserRouter>
 			<div className='container'>
 				<div className={`sidebar ${darkMode ? 'dark' : ''}`}>
-					<SidebarContent darkMode={darkMode} />
+					<SidebarContent
+						darkMode={darkMode}
+						setDarkMode={setDarkMode}
+					/>
 				</div>
 				<div className={`title-content-container `}>
 					<div className={`title ${darkMode ? 'dark' : ''}`}>
@@ -38,6 +46,7 @@ const Router = () => {
 								<Feed
 									fetchedData={fetchedData}
 									search={text}
+									setSearch={setText}
 									setTitle={setTitle}
 									darkMode={darkMode}
 								/>

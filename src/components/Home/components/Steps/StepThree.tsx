@@ -14,6 +14,7 @@ interface FuncProps {
 	errors: any;
 	setValue: any;
 	validation: boolean;
+	darkMode: boolean;
 }
 
 const StepThree: React.FC<FuncProps> = ({
@@ -23,6 +24,7 @@ const StepThree: React.FC<FuncProps> = ({
 	errors,
 	setValue,
 	validation,
+	darkMode,
 }) => {
 	return (
 		<>
@@ -39,7 +41,14 @@ const StepThree: React.FC<FuncProps> = ({
 								color='primary'
 							/>
 						}
-						label='Accident-free'
+						label={
+							<div
+								style={{
+									color: darkMode ? 'white' : 'black',
+								}}>
+								Accident-free
+							</div>
+						}
 					/>
 				)}
 			/>
@@ -57,7 +66,14 @@ const StepThree: React.FC<FuncProps> = ({
 								color='primary'
 							/>
 						}
-						label='Serviced at an ASS'
+						label={
+							<div
+								style={{
+									color: darkMode ? 'white' : 'black',
+								}}>
+								Serviced at an ASS
+							</div>
+						}
 					/>
 				)}
 			/>

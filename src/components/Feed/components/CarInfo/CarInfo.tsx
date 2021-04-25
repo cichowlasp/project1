@@ -37,19 +37,23 @@ interface FuncProps {
 		servicedASS: boolean;
 		vehicleOperation: number;
 	};
+	darkMode: boolean;
 }
-const CarInfo: React.FC<FuncProps> = ({ car }) => {
+const CarInfo: React.FC<FuncProps> = ({ car, darkMode }) => {
 	const classes = useStyles();
 	return (
 		<Accordion elevation={3} className={classes.accordion}>
 			<AccordionSummary
-				expandIcon={<ExpandMoreIcon />}
+				expandIcon={<ExpandMoreIcon htmlColor='black' />}
 				aria-controls='panel1a-content'
 				id='panel1a-header'>
-				<div className='card-title'>{`${car.brand} ${car.model}`}</div>
+				<div
+					className={`card-title ${
+						darkMode ? 'dark' : ''
+					}`}>{`${car.brand} ${car.model}`}</div>
 			</AccordionSummary>
 			<AccordionDetails>
-				<div className='card-information'>
+				<div className={`card-information ${darkMode ? 'dark' : ''}`}>
 					<div>
 						Prduction Date:{' '}
 						<span>

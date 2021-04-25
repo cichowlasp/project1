@@ -22,12 +22,20 @@ interface FuncProps {
 	fetchedData: data[];
 	search: string;
 	darkMode: boolean;
+	setSearch(arg: string): void;
 }
 
-const Feed: React.FC<FuncProps> = ({ setTitle, fetchedData, search }) => {
+const Feed: React.FC<FuncProps> = ({
+	setTitle,
+	fetchedData,
+	search,
+	setSearch,
+	darkMode,
+}) => {
 	useEffect(() => {
 		setTitle('Collection');
-	}, [setTitle]);
+		setSearch('');
+	}, [setTitle, setSearch]);
 
 	return (
 		<div className='cards-container'>
@@ -54,7 +62,7 @@ const Feed: React.FC<FuncProps> = ({ setTitle, fetchedData, search }) => {
 					}
 				})
 				.map((car: data) => {
-					return <CarInfo car={car} />;
+					return <CarInfo car={car} darkMode={darkMode} />;
 				})}
 		</div>
 	);

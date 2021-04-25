@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Snackbar } from '@material-ui/core';
+
 import { useForm } from 'react-hook-form';
 import StepOne from '../Steps/StepOne';
 import StepTwo from '../Steps/StepTwo';
@@ -38,6 +39,7 @@ const Multiform: React.FC<FuncProps> = ({ darkMode }) => {
 						setValue={setValue}
 						errors={errors}
 						validation={validation}
+						darkMode={darkMode}
 					/>
 				);
 			case 2:
@@ -60,6 +62,7 @@ const Multiform: React.FC<FuncProps> = ({ darkMode }) => {
 						setValue={setValue}
 						errors={errors}
 						validation={validation}
+						darkMode={darkMode}
 					/>
 				);
 			default:
@@ -94,6 +97,7 @@ const Multiform: React.FC<FuncProps> = ({ darkMode }) => {
 
 		setOpen(false);
 	};
+
 	return (
 		<form
 			className='form-container'
