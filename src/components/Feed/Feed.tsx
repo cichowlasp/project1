@@ -51,12 +51,18 @@ const Feed: React.FC<FuncProps> = ({
 						car.model
 							.toLowerCase()
 							.includes(search.toLowerCase()) ||
-						(car.brand + car.model)
+						(
+							car.brand.replace(/\s/g, '') +
+							car.model.replace(/\s/g, '')
+						)
 							.toLowerCase()
 							.includes(search.toLowerCase()) ||
-						(car.model + car.brand)
+						(
+							car.model.replace(/\s/g, '') +
+							car.brand.replace(/\s/g, '')
+						)
 							.toLowerCase()
-							.includes(search.toLowerCase())
+							.includes(search.toLowerCase().replace(/\s/g, ''))
 					) {
 						return car;
 					}

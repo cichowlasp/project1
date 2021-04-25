@@ -8,9 +8,16 @@ import './Router.scss';
 interface FuncProps {
 	darkMode: boolean;
 	setDarkMode(arg: boolean): void;
+	setColors(arg: { primary: string; secondary: string }): void;
+	colors: { primary: string; secondary: string };
 }
 
-const Router: React.FC<FuncProps> = ({ darkMode, setDarkMode }) => {
+const Router: React.FC<FuncProps> = ({
+	darkMode,
+	setDarkMode,
+	setColors,
+	colors,
+}) => {
 	const fetchedData = JSON.parse(localStorage.getItem('data') || '[]');
 	const [title, setTitle] = useState('Add Car');
 	const [text, setText] = useState('');
@@ -26,6 +33,8 @@ const Router: React.FC<FuncProps> = ({ darkMode, setDarkMode }) => {
 					<SidebarContent
 						darkMode={darkMode}
 						setDarkMode={setDarkMode}
+						setColors={setColors}
+						colors={colors}
 					/>
 				</div>
 				<div className={`title-content-container `}>

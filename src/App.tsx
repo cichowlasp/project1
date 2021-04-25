@@ -10,16 +10,32 @@ const App = () => {
 	const [darkMode, setDarkMode] = useState(
 		JSON.parse(localStorage.getItem('darkMode') || 'false')
 	);
+	const [colors, setColors] = useState({
+		primary: localStorage.getItem('primary') || '#F47373',
+		secondary: localStorage.getItem('secondary') || '#ba68c8',
+	});
 	const appliedTheme = createMuiTheme(
 		!darkMode
 			? {
 					palette: {
 						type: 'light',
+						primary: {
+							main: colors.primary,
+						},
+						secondary: {
+							main: colors.secondary,
+						},
 					},
 			  }
 			: {
 					palette: {
 						type: 'dark',
+						primary: {
+							main: colors.primary,
+						},
+						secondary: {
+							main: colors.secondary,
+						},
 					},
 			  }
 	);
@@ -27,7 +43,12 @@ const App = () => {
 		<ThemeProvider theme={appliedTheme}>
 			<div className='App'>
 				<MuiPickersUtilsProvider utils={MomentUtils}>
-					<Router darkMode={darkMode} setDarkMode={setDarkMode} />
+					<Router
+						darkMode={darkMode}
+						setDarkMode={setDarkMode}
+						setColors={setColors}
+						colors={colors}
+					/>
 				</MuiPickersUtilsProvider>
 			</div>
 		</ThemeProvider>
