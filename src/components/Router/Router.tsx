@@ -21,7 +21,7 @@ const Router: React.FC<FuncProps> = ({
 	const [title, setTitle] = useState('Add Car');
 	const [text, setText] = useState('');
 
-	const filterData = (event: any) => {
+	const filterData = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setText(event.target.value.trim().replace(/\s/g, ''));
 	};
 

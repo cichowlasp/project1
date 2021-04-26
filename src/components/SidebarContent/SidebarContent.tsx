@@ -21,13 +21,13 @@ const SidebarContent: React.FC<FuncProps> = ({
 	colors,
 }) => {
 	const [color, setColor] = useState('#F47373');
-	const [anchorEl, setAnchorEl] = useState(null);
+	const [anchorEl, setAnchorEl] = useState<HTMLDivElement | null>(null);
 	const changeTheme = () => {
 		localStorage.setItem('darkMode', JSON.stringify(!darkMode));
 		setDarkMode(!darkMode);
 	};
 
-	const handleClick = (event: any) => {
+	const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
 		setAnchorEl(event.currentTarget);
 	};
 	const handleClose = () => {
@@ -62,7 +62,6 @@ const SidebarContent: React.FC<FuncProps> = ({
 				{darkMode ? <BrightnessHighIcon /> : <Brightness4Icon />}
 			</div>
 			<div
-				role='button'
 				onClick={(event) => handleClick(event)}
 				className={`sidebar-link ${darkMode ? 'dark' : ''}`}>
 				<PaletteIcon />
