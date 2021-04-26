@@ -32,7 +32,8 @@
             flex-direction: column;
             background-color: $white-mode;
             margin: 1rem;
-            max-height: 12vh;
+            max-height: 8vh;
+            min-height: 8vh;
             max-width: 100%;
             text-transform: uppercase;
             border-radius: 10px;
