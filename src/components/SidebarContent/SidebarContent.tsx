@@ -6,6 +6,8 @@ import { BlockPicker } from 'react-color';
 import BrightnessHighIcon from '@material-ui/icons/BrightnessHigh';
 import Brightness4Icon from '@material-ui/icons/Brightness4';
 import PaletteIcon from '@material-ui/icons/Palette';
+import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
+import AddIcon from '@material-ui/icons/Add';
 
 interface FuncProps {
 	darkMode: boolean;
@@ -48,12 +50,12 @@ const SidebarContent: React.FC<FuncProps> = ({
 	return (
 		<div className='sidebar-container'>
 			<Link className={`sidebar-link ${darkMode ? 'dark' : ''}`} to='/'>
-				Add Car
+				<div className="text">Add Car</div><AddIcon className='icon'/>
 			</Link>
 			<Link
 				className={`sidebar-link ${darkMode ? 'dark' : ''}`}
 				to='/feed'>
-				Collection
+				<div className="text">Collection</div><FormatListBulletedIcon className='icon'/>
 			</Link>
 			<div
 				role='button'

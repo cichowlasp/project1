@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		accordion: {
 			marginBottom: '25px',
-			width: '400px',
+			width: '100%',
 			background: 'rgb(232, 232, 232)',
 		},
 	})
