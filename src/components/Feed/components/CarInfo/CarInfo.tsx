@@ -11,7 +11,6 @@ import moment, { Moment } from 'moment';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
-import './CarInfo.scss';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({

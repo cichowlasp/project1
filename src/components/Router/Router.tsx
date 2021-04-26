@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from '../Home/Home';
 import Feed from '../Feed/Feed';
-import SidebarContent from '../SidebarConetent/SidebarContent';
-import './Router.scss';
+import SidebarContent from '../SidebarContent/SidebarContent';
 
 interface FuncProps {
 	darkMode: boolean;

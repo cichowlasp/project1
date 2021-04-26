@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import './Feed.scss';
 import CarInfo from './components/CarInfo/CarInfo';
 import { Moment } from 'moment';
 
@@ -37,9 +36,9 @@ const Feed: React.FC<FuncProps> = ({
 		setSearch('');
 	}, [setTitle, setSearch]);
 
-	return (
-		<div className='cards-container'>
-			{fetchedData
+	const filterData = () => {
+		return (
+			fetchedData
 				// eslint-disable-next-line array-callback-return
 				.filter((car: data) => {
 					if (search === '') {
@@ -67,9 +66,14 @@ const Feed: React.FC<FuncProps> = ({
 						return car;
 					}
 				})
-				.map((car: data) => {
-					return <CarInfo car={car} darkMode={darkMode} />;
-				})}
+		);
+	};
+
+	return (
+		<div className='cards-container'>
+			{filterData().map((car: data) => {
+				return <CarInfo car={car} darkMode={darkMode} />;
+			})}
 		</div>
 	);
 };

@@ -1,14 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, MouseEvent } from 'react';
 import { Button, Snackbar } from '@material-ui/core';
-
+import { Moment } from 'moment';
 import { useForm } from 'react-hook-form';
 import StepOne from '../Steps/StepOne';
 import StepTwo from '../Steps/StepTwo';
 import StepThree from '../Steps/StepThree';
-import './Multiform.scss';
 
 interface FuncProps {
 	darkMode: boolean;
+}
+
+interface data {
+	brand: string;
+	model: string;
+	productionDate: Moment;
+	vehicleOperation: number;
+	fuelType: string;
+	gearbox: string;
+	cubicCapacity: number;
+	accidentFree: boolean;
+	servicedASS: boolean;
+	color: string;
+	condition: string;
 }
 
 const Multiform: React.FC<FuncProps> = ({ darkMode }) => {
@@ -68,14 +81,14 @@ const Multiform: React.FC<FuncProps> = ({ darkMode }) => {
 			default:
 		}
 	};
-	const nextStep = (event: any) => {
+	const nextStep = (event: MouseEvent) => {
 		event.preventDefault();
 		setStep(step + 1);
 	};
-	const previousStep = (event: any) => {
+	const previousStep = () => {
 		setStep(step - 1);
 	};
-	const saveData = (data: any) => {
+	const saveData = (data: data) => {
 		setValidation(false);
 		setMessage('');
 		const savedData = JSON.parse(localStorage.getItem('data') || '[]');
@@ -105,7 +118,7 @@ const Multiform: React.FC<FuncProps> = ({ darkMode }) => {
 			<div className='fields-container'>{returnStep()}</div>
 			<div className='button-container'>
 				<Button
-					onClick={(event) => previousStep(event)}
+					onClick={previousStep}
 					disabled={step === 1 ? true : false}
 					variant='contained'
 					color='secondary'>
