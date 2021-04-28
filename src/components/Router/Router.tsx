@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { HashRouter as BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from '../Home/Home';
 import Feed from '../Feed/Feed';
 import SidebarContent from '../SidebarContent/SidebarContent';
@@ -26,7 +26,7 @@ const Router: React.FC<FuncProps> = ({
 	};
 
 	return (
-		<BrowserRouter>
+		<BrowserRouter basename={process.env.PUBLIC_URL}>
 			<div className='container'>
 				<div className={`sidebar ${darkMode ? 'dark' : ''}`}>
 					<SidebarContent
