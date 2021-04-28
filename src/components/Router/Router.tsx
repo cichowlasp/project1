@@ -26,7 +26,7 @@ const Router: React.FC<FuncProps> = ({
 	};
 
 	return (
-		<BrowserRouter basename={process.env.PUBLIC_URL}>
+		<BrowserRouter>
 			<div className='container'>
 				<div className={`sidebar ${darkMode ? 'dark' : ''}`}>
 					<SidebarContent
