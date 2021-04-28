@@ -50,6 +50,9 @@ const Router: React.FC<FuncProps> = ({
 					</div>
 					<div className={`content ${darkMode ? 'dark' : ''}`}>
 						<Switch>
+							<Route exact path='/'>
+								<Home setTitle={setTitle} darkMode={darkMode} />
+							</Route>
 							<Route path='/feed'>
 								<Feed
 									fetchedData={fetchedData}
@@ -58,9 +61,6 @@ const Router: React.FC<FuncProps> = ({
 									setTitle={setTitle}
 									darkMode={darkMode}
 								/>
-							</Route>
-							<Route path='/'>
-								<Home setTitle={setTitle} darkMode={darkMode} />
 							</Route>
 						</Switch>
 					</div>
