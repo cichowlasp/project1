@@ -16,11 +16,10 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 ## Screenshots
 
-![Mobile](/screenshots/mobile-1.png)
-Format: ![Alt Text](url)
-![Mobile](/screenshots/mobile-2.png)
-Format: ![Alt Text](url)
+![Mobile](/screenshots/mobile-1.PNG)
+
+![Mobile](/screenshots/mobile-2.PNG)
+
 ![Desktop](/screenshots/desktop-1.png)
-Format: ![Alt Text](url)
+
 ![Desktop](/screenshots/desktop-2.png)
-Format: ![Alt Text](url)
