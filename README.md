@@ -17,5 +17,5 @@ It correctly bundles React in production mode and optimizes the build for the be
 ## Screenshots
 Desktop | Mobile
 --------|-------
-![Desktop](/screenshots/desktop-1.png)|![Mobile](/screenshots/mobile-2.PNG)
-![Desktop](/screenshots/desktop-2.png)|![Mobile](/screenshots/mobile-1.PNG) 
+![Desktop](/screenshots/desktop-1.png)|![Mobile](/screenshots/mobile-1.PNG)
+![Desktop](/screenshots/desktop-2.png)|![Mobile](/screenshots/mobile-2.PNG) 
