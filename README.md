@@ -15,8 +15,8 @@ Builds the app for production to the build folder.
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
 ## Screenshots
-
--------------------------|-------------------------
+Desktop | Mobile
+--------|-------
 ![Mobile](/screenshots/mobile-1.PNG) | ![Mobile](/screenshots/mobile-2.PNG)
 
 ![Desktop](/screenshots/desktop-1.png) | ![Desktop](/screenshots/desktop-2.png)
