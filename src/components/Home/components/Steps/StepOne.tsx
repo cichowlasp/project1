@@ -2,14 +2,24 @@ import React from 'react';
 import { TextField } from '@material-ui/core';
 import { KeyboardDatePicker } from '@material-ui/pickers';
 import { Controller } from 'react-hook-form';
+import {
+	UseFormRegister,
+	FieldValues,
+	Control,
+	UseFormGetValues,
+	UseFormWatch,
+	UseFormSetValue,
+	DeepMap,
+	FieldError,
+} from 'react-hook-form';
 
 interface FuncProps {
-	register: any;
-	control: any;
-	getValues: any;
-	watch: any;
-	setValue: any;
-	errors: any;
+	register: UseFormRegister<FieldValues>;
+	control: Control<FieldValues>;
+	getValues: UseFormGetValues<FieldValues>;
+	watch: UseFormWatch<FieldValues>;
+	setValue: UseFormSetValue<FieldValues>;
+	errors: DeepMap<FieldValues, FieldError>;
 	validation: boolean;
 }
 

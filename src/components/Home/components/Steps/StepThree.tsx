@@ -7,13 +7,22 @@ import {
 } from '@material-ui/core';
 import { Controller } from 'react-hook-form';
 import { ThemeContext } from '../../../Context/DarkMode';
+import {
+	UseFormRegister,
+	FieldValues,
+	Control,
+	UseFormGetValues,
+	UseFormSetValue,
+	DeepMap,
+	FieldError,
+} from 'react-hook-form';
 
 interface FuncProps {
-	register: any;
-	control: any;
-	getValues: any;
-	errors: any;
-	setValue: any;
+	register: UseFormRegister<FieldValues>;
+	control: Control<FieldValues>;
+	getValues: UseFormGetValues<FieldValues>;
+	setValue: UseFormSetValue<FieldValues>;
+	errors: DeepMap<FieldValues, FieldError>;
 	validation: boolean;
 }
 
