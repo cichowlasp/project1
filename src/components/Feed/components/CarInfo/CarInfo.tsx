@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
 	Accordion,
 	AccordionSummary,
@@ -11,6 +11,7 @@ import moment, { Moment } from 'moment';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
+import { ThemeContext } from '../../../Context/DarkMode';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -36,9 +37,9 @@ interface FuncProps {
 		servicedASS: boolean;
 		vehicleOperation: number;
 	};
-	darkMode: boolean;
 }
-const CarInfo: React.FC<FuncProps> = ({ car, darkMode }) => {
+const CarInfo: React.FC<FuncProps> = ({ car }) => {
+	const { darkMode } = useContext(ThemeContext);
 	const classes = useStyles();
 	return (
 		<Accordion elevation={3} className={classes.accordion}>

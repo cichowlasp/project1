@@ -3,14 +3,13 @@ import Multiform from './components/Multiform/Multiform';
 
 interface FuncProps {
 	setTitle(arg: string): void;
-	darkMode: boolean;
 }
 
-const Home: React.FC<FuncProps> = ({ setTitle, darkMode }) => {
+const Home: React.FC<FuncProps> = ({ setTitle }) => {
 	useEffect(() => {
 		setTitle('Add Car');
 	}, [setTitle]);
-	return <Multiform darkMode={darkMode} />;
+	return <Multiform />;
 };
 
 export default Home;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import './SidebarContent.scss';
 import { Popover, Paper, Button } from '@material-ui/core';
@@ -8,26 +8,17 @@ import Brightness4Icon from '@material-ui/icons/Brightness4';
 import PaletteIcon from '@material-ui/icons/Palette';
 import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
 import AddIcon from '@material-ui/icons/Add';
+import { ThemeContext } from '../Context/DarkMode';
 
 interface FuncProps {
-	darkMode: boolean;
-	setDarkMode(arg: boolean): void;
 	setColors(arg: { primary: string; secondary: string }): void;
 	colors: { primary: string; secondary: string };
 }
 
-const SidebarContent: React.FC<FuncProps> = ({
-	darkMode,
-	setDarkMode,
-	setColors,
-	colors,
-}) => {
+const SidebarContent: React.FC<FuncProps> = ({ setColors, colors }) => {
 	const [color, setColor] = useState('#F47373');
 	const [anchorEl, setAnchorEl] = useState<HTMLDivElement | null>(null);
-	const changeTheme = () => {
-		localStorage.setItem('darkMode', JSON.stringify(!darkMode));
-		setDarkMode(!darkMode);
-	};
+	const { darkMode, toggleDarkMode } = useContext(ThemeContext);
 
 	const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
 		setAnchorEl(event.currentTarget);
@@ -50,16 +41,18 @@ const SidebarContent: React.FC<FuncProps> = ({
 	return (
 		<div className='sidebar-container'>
 			<Link className={`sidebar-link ${darkMode ? 'dark' : ''}`} to='/'>
-				<div className="text">Add Car</div><AddIcon className='icon'/>
+				<div className='text'>Add Car</div>
+				<AddIcon className='icon' />
 			</Link>
 			<Link
 				className={`sidebar-link ${darkMode ? 'dark' : ''}`}
 				to='/feed'>
-				<div className="text">Collection</div><FormatListBulletedIcon className='icon'/>
+				<div className='text'>Collection</div>
+				<FormatListBulletedIcon className='icon' />
 			</Link>
 			<div
 				role='button'
-				onClick={changeTheme}
+				onClick={toggleDarkMode}
 				className={`sidebar-link ${darkMode ? 'dark' : ''}`}>
 				{darkMode ? <BrightnessHighIcon /> : <Brightness4Icon />}
 			</div>

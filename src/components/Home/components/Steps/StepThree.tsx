@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
 	TextField,
 	FormControlLabel,
@@ -6,6 +6,7 @@ import {
 	MenuItem,
 } from '@material-ui/core';
 import { Controller } from 'react-hook-form';
+import { ThemeContext } from '../../../Context/DarkMode';
 
 interface FuncProps {
 	register: any;
@@ -14,7 +15,6 @@ interface FuncProps {
 	errors: any;
 	setValue: any;
 	validation: boolean;
-	darkMode: boolean;
 }
 
 const StepThree: React.FC<FuncProps> = ({
@@ -24,8 +24,8 @@ const StepThree: React.FC<FuncProps> = ({
 	errors,
 	setValue,
 	validation,
-	darkMode,
 }) => {
+	const { darkMode } = useContext(ThemeContext);
 	return (
 		<>
 			<Controller

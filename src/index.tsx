@@ -4,10 +4,13 @@ import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'fontsource-roboto';
+import { DarkModeProvider } from './components/Context/DarkMode';
 
 ReactDOM.render(
 	<React.StrictMode>
-		<App />
+		<DarkModeProvider>
+			<App />
+		</DarkModeProvider>
 	</React.StrictMode>,
 	document.getElementById('root')
 );

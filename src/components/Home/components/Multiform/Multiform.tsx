@@ -6,10 +6,6 @@ import StepOne from '../Steps/StepOne';
 import StepTwo from '../Steps/StepTwo';
 import StepThree from '../Steps/StepThree';
 
-interface FuncProps {
-	darkMode: boolean;
-}
-
 interface data {
 	brand: string;
 	model: string;
@@ -24,7 +20,7 @@ interface data {
 	condition: string;
 }
 
-const Multiform: React.FC<FuncProps> = ({ darkMode }) => {
+const Multiform: React.FC = () => {
 	const [step, setStep] = useState(1);
 	const [open, setOpen] = useState(false);
 	const [message, setMessage] = useState('');
@@ -52,7 +48,6 @@ const Multiform: React.FC<FuncProps> = ({ darkMode }) => {
 						setValue={setValue}
 						errors={errors}
 						validation={validation}
-						darkMode={darkMode}
 					/>
 				);
 			case 2:
@@ -75,7 +70,6 @@ const Multiform: React.FC<FuncProps> = ({ darkMode }) => {
 						setValue={setValue}
 						errors={errors}
 						validation={validation}
-						darkMode={darkMode}
 					/>
 				);
 			default:

@@ -1,25 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { HashRouter as BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from '../Home/Home';
 import Feed from '../Feed/Feed';
 import SidebarContent from '../SidebarContent/SidebarContent';
+import { ThemeContext } from '../Context/DarkMode';
 
 interface FuncProps {
-	darkMode: boolean;
-	setDarkMode(arg: boolean): void;
 	setColors(arg: { primary: string; secondary: string }): void;
 	colors: { primary: string; secondary: string };
 }
 
-const Router: React.FC<FuncProps> = ({
-	darkMode,
-	setDarkMode,
-	setColors,
-	colors,
-}) => {
+const Router: React.FC<FuncProps> = ({ setColors, colors }) => {
 	const fetchedData = JSON.parse(localStorage.getItem('data') || '[]');
 	const [title, setTitle] = useState('Add Car');
 	const [text, setText] = useState('');
+	const { darkMode } = useContext(ThemeContext);
 
 	const filterData = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setText(event.target.value.trim().replace(/\s/g, ''));
@@ -29,12 +24,7 @@ const Router: React.FC<FuncProps> = ({
 		<BrowserRouter>
 			<div className='container'>
 				<div className={`sidebar ${darkMode ? 'dark' : ''}`}>
-					<SidebarContent
-						darkMode={darkMode}
-						setDarkMode={setDarkMode}
-						setColors={setColors}
-						colors={colors}
-					/>
+					<SidebarContent setColors={setColors} colors={colors} />
 				</div>
 				<div className={`title-content-container `}>
 					<div className={`title ${darkMode ? 'dark' : ''}`}>
@@ -51,7 +41,7 @@ const Router: React.FC<FuncProps> = ({
 					<div className={`content ${darkMode ? 'dark' : ''}`}>
 						<Switch>
 							<Route exact path='/'>
-								<Home setTitle={setTitle} darkMode={darkMode} />
+								<Home setTitle={setTitle} />
 							</Route>
 							<Route path='/feed'>
 								<Feed
@@ -59,7 +49,6 @@ const Router: React.FC<FuncProps> = ({
 									search={text}
 									setSearch={setText}
 									setTitle={setTitle}
-									darkMode={darkMode}
 								/>
 							</Route>
 						</Switch>
