@@ -11,7 +11,7 @@ import moment, { Moment } from 'moment';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
-import { ThemeContext } from '../../../Context/DarkMode';
+import { ThemeContext } from '../../../Context/Context';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({

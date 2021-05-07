@@ -6,7 +6,7 @@ import {
 	MenuItem,
 } from '@material-ui/core';
 import { Controller } from 'react-hook-form';
-import { ThemeContext } from '../../../Context/DarkMode';
+import { ThemeContext } from '../../../Context/Context';
 import {
 	UseFormRegister,
 	FieldValues,

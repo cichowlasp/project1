@@ -8,8 +8,7 @@ import Brightness4Icon from '@material-ui/icons/Brightness4';
 import PaletteIcon from '@material-ui/icons/Palette';
 import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
 import AddIcon from '@material-ui/icons/Add';
-import { ThemeContext } from '../Context/DarkMode';
-import { ColorsContext } from '../Context/ColorsProvider';
+import { ThemeContext, ColorsContext } from '../Context/Context';
 
 const SidebarContent: React.FC = () => {
 	const { changeColors } = useContext(ColorsContext);

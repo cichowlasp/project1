@@ -5,8 +5,7 @@ import { ThemeProvider } from '@material-ui/core';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import MomentUtils from '@date-io/moment';
 import './scss/styles.scss';
-import { ThemeContext } from './components/Context/DarkMode';
-import { ColorsContext } from './components/Context/ColorsProvider';
+import { ThemeContext, ColorsContext } from './components/Context/Context';
 
 const App = () => {
 	const { darkMode } = useContext(ThemeContext);

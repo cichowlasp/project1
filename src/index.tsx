@@ -4,8 +4,7 @@ import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'fontsource-roboto';
-import { DarkModeProvider } from './components/Context/DarkMode';
-import { ColorsProvider } from './components/Context/ColorsProvider';
+import { DarkModeProvider, ColorsProvider } from './components/Context/Context';
 
 ReactDOM.render(
 	<React.StrictMode>

@@ -3,7 +3,7 @@ import { HashRouter as BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from '../Home/Home';
 import Feed from '../Feed/Feed';
 import SidebarContent from '../SidebarContent/SidebarContent';
-import { ThemeContext } from '../Context/DarkMode';
+import { ThemeContext } from '../Context/Context';
 
 const Router: React.FC = () => {
 	const fetchedData = JSON.parse(localStorage.getItem('data') || '[]');
