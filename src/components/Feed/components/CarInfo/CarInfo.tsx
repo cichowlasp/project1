@@ -7,11 +7,13 @@ import {
 	createStyles,
 	makeStyles,
 } from '@material-ui/core';
+import styled from 'styled-components';
 import moment, { Moment } from 'moment';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import { ThemeContext } from '../../../Context/Context';
+import { DarkMode } from '../../../../consts/colors';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -47,13 +49,13 @@ const CarInfo: React.FC<FuncProps> = ({ car }) => {
 				expandIcon={<ExpandMoreIcon htmlColor='black' />}
 				aria-controls='panel1a-content'
 				id='panel1a-header'>
-				<div
-					className={`card-title ${
-						darkMode ? 'dark' : ''
-					}`}>{`${car.brand} ${car.model}`}</div>
+				<CardTitle
+					darkMode={
+						darkMode
+					}>{`${car.brand} ${car.model}`}</CardTitle>
 			</AccordionSummary>
 			<AccordionDetails>
-				<div className={`card-information ${darkMode ? 'dark' : ''}`}>
+				<CarInformation darkMode={darkMode}>
 					<div>
 						Prduction Date:{' '}
 						<span>
@@ -98,9 +100,59 @@ const CarInfo: React.FC<FuncProps> = ({ car }) => {
 					<div>
 						Color: <span>{car.color}</span>
 					</div>
-				</div>
+				</CarInformation>
 			</AccordionDetails>
 		</Accordion>
 	);
 };
+
+interface darkMode {
+	darkMode: Boolean;
+}
+
+const CardTitle = styled.div<darkMode>`
+	font-weight: bold;
+	width: 100%;
+	padding: 10px;
+	font-size: 2rem;
+	${({ darkMode }) => (darkMode ? `color: ${DarkMode};` : '')}
+	@media (max-width: 630px) {
+		font-size: 1rem;
+	}
+`;
+
+const CarInformation = styled.div<darkMode>`
+	width: 100%;
+	text-align: left;
+	padding-left: 20px;
+	div {
+		display: flex;
+		width: 100%;
+		height: 40px;
+		align-content: center;
+		align-items: center;
+		span {
+			font-weight: bold;
+			margin-left: 10px;
+			text-transform: lowercase;
+		}
+	}
+	@media (max-width: 630px) {
+		padding-left: 0;
+		div {
+			font-size: 0.65rem;
+			display: flex;
+			width: 100%;
+			height: 45px;
+			align-content: center;
+			align-items: center;
+			span {
+				font-weight: bold;
+				text-transform: lowercase;
+			}
+		}
+	}
+	${({ darkMode }) => (darkMode ? `color: ${DarkMode};` : '')}
+`;
+
 export default CarInfo;

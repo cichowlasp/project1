@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import styled from 'styled-components';
 import CarInfo from './components/CarInfo/CarInfo';
 import { Moment } from 'moment';
 
@@ -68,12 +69,24 @@ const Feed: React.FC<FuncProps> = ({
 	};
 
 	return (
-		<div className='cards-container'>
+		<Container>
 			{filterData().map((car: data) => {
 				return <CarInfo car={car} />;
 			})}
-		</div>
+		</Container>
 	);
 };
+
+const Container = styled.div`
+	padding: 5vh;
+	display: flex;
+	width: 40%;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	@media (max-width: 630px) {
+		width: 60%;
+	}
+`;
 
 export default Feed;

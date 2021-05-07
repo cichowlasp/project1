@@ -4,7 +4,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/core';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import MomentUtils from '@date-io/moment';
-import './scss/styles.scss';
+import styled from 'styled-components';
 import { ThemeContext, ColorsContext } from './components/Context/Context';
 
 const App = () => {
@@ -23,13 +23,17 @@ const App = () => {
 	});
 	return (
 		<ThemeProvider theme={appliedTheme}>
-			<div className='App'>
+			<AppStyle className='App'>
 				<MuiPickersUtilsProvider utils={MomentUtils}>
 					<Router />
 				</MuiPickersUtilsProvider>
-			</div>
+			</AppStyle>
 		</ThemeProvider>
 	);
 };
+
+const AppStyle = styled.div`
+	height: 100vh;
+`;
 
 export default App;

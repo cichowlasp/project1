@@ -2,6 +2,7 @@ import React, { useState, MouseEvent } from 'react';
 import { Button, Snackbar } from '@material-ui/core';
 import { Moment } from 'moment';
 import { useForm } from 'react-hook-form';
+import styled from 'styled-components';
 import StepOne from '../Steps/StepOne';
 import StepTwo from '../Steps/StepTwo';
 import StepThree from '../Steps/StepThree';
@@ -106,11 +107,9 @@ const Multiform: React.FC = () => {
 	};
 
 	return (
-		<form
-			className='form-container'
-			onSubmit={handleSubmit(onSubmit, onError)}>
-			<div className='fields-container'>{returnStep()}</div>
-			<div className='button-container'>
+		<Form onSubmit={handleSubmit(onSubmit, onError)}>
+			<FieldsContainer>{returnStep()}</FieldsContainer>
+			<ButtonsContainer>
 				<Button
 					onClick={(event) => changeStep(event)}
 					disabled={step === 1 ? true : false}
@@ -132,16 +131,39 @@ const Multiform: React.FC = () => {
 						Add
 					</Button>
 				)}
-			</div>
-			<div className='message'>{message}</div>
+			</ButtonsContainer>
+			<Message>{message}</Message>
 			<Snackbar
 				open={open}
 				autoHideDuration={6000}
 				onClose={handleClose}
 				message='Car added sucesfully'
 			/>
-		</form>
+		</Form>
 	);
 };
 
+const Form = styled.form`
+	display: flex;
+	width: 50vw;
+	flex-direction: column;
+	justify-content: space-evenly;
+`;
+
+const FieldsContainer = styled.div`
+	height: 50vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+`;
+
+const ButtonsContainer = styled.div`
+	display: flex;
+	justify-content: space-evenly;
+`;
+
+const Message = styled.div`
+	height: 20px;
+	color: red;
+`;
 export default Multiform;
