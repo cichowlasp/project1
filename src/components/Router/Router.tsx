@@ -5,12 +5,7 @@ import Feed from '../Feed/Feed';
 import SidebarContent from '../SidebarContent/SidebarContent';
 import { ThemeContext } from '../Context/DarkMode';
 
-interface FuncProps {
-	setColors(arg: { primary: string; secondary: string }): void;
-	colors: { primary: string; secondary: string };
-}
-
-const Router: React.FC<FuncProps> = ({ setColors, colors }) => {
+const Router: React.FC = () => {
 	const fetchedData = JSON.parse(localStorage.getItem('data') || '[]');
 	const [title, setTitle] = useState('Add Car');
 	const [text, setText] = useState('');
@@ -24,7 +19,7 @@ const Router: React.FC<FuncProps> = ({ setColors, colors }) => {
 		<BrowserRouter>
 			<div className='container'>
 				<div className={`sidebar ${darkMode ? 'dark' : ''}`}>
-					<SidebarContent setColors={setColors} colors={colors} />
+					<SidebarContent />
 				</div>
 				<div className={`title-content-container `}>
 					<div className={`title ${darkMode ? 'dark' : ''}`}>

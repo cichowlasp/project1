@@ -5,11 +5,14 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'fontsource-roboto';
 import { DarkModeProvider } from './components/Context/DarkMode';
+import { ColorsProvider } from './components/Context/ColorsProvider';
 
 ReactDOM.render(
 	<React.StrictMode>
 		<DarkModeProvider>
-			<App />
+			<ColorsProvider>
+				<App />
+			</ColorsProvider>
 		</DarkModeProvider>
 	</React.StrictMode>,
 	document.getElementById('root')

@@ -9,13 +9,10 @@ import PaletteIcon from '@material-ui/icons/Palette';
 import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
 import AddIcon from '@material-ui/icons/Add';
 import { ThemeContext } from '../Context/DarkMode';
+import { ColorsContext } from '../Context/ColorsProvider';
 
-interface FuncProps {
-	setColors(arg: { primary: string; secondary: string }): void;
-	colors: { primary: string; secondary: string };
-}
-
-const SidebarContent: React.FC<FuncProps> = ({ setColors, colors }) => {
+const SidebarContent: React.FC = () => {
+	const { changeColors } = useContext(ColorsContext);
 	const [color, setColor] = useState('#F47373');
 	const [anchorEl, setAnchorEl] = useState<HTMLDivElement | null>(null);
 	const { darkMode, toggleDarkMode } = useContext(ThemeContext);
@@ -28,15 +25,6 @@ const SidebarContent: React.FC<FuncProps> = ({ setColors, colors }) => {
 	};
 
 	const open = Boolean(anchorEl);
-
-	const setPrimary = () => {
-		localStorage.setItem('primary', color);
-		setColors({ ...colors, primary: color });
-	};
-	const setSecondary = () => {
-		localStorage.setItem('secondary', color);
-		setColors({ ...colors, secondary: color });
-	};
 
 	return (
 		<div className='sidebar-container'>
@@ -83,13 +71,13 @@ const SidebarContent: React.FC<FuncProps> = ({ setColors, colors }) => {
 						<Button
 							variant='contained'
 							color='secondary'
-							onClick={setSecondary}>
+							onClick={() => changeColors(color, 'secondary')}>
 							Set Secondary
 						</Button>
 						<Button
 							variant='contained'
 							color='primary'
-							onClick={setPrimary}>
+							onClick={() => changeColors(color, 'primary')}>
 							Set primary
 						</Button>
 					</div>

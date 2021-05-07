@@ -75,26 +75,26 @@ const Multiform: React.FC = () => {
 			default:
 		}
 	};
-	const nextStep = (event: MouseEvent) => {
+	const changeStep = (event: MouseEvent, action?: String) => {
 		event.preventDefault();
-		setStep(step + 1);
+		setStep((prevStep) => (action === '+' ? ++prevStep : --prevStep));
 	};
-	const previousStep = () => {
-		setStep(step - 1);
-	};
+
 	const saveData = (data: data) => {
-		setValidation(false);
-		setMessage('');
 		const savedData = JSON.parse(localStorage.getItem('data') || '[]');
 		localStorage.setItem('data', JSON.stringify([...savedData, data]));
+	};
+	const onSubmit = (data: data) => {
+		setValidation(false);
+		setMessage('');
+		saveData(data);
 		reset();
 		setStep(1);
 		setOpen(true);
 	};
-
 	const onError = () => {
 		setValidation(true);
-		setMessage('Please check all the fields to correct erros');
+		setMessage('Please check all the fields to correct errors');
 	};
 
 	const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
@@ -108,11 +108,11 @@ const Multiform: React.FC = () => {
 	return (
 		<form
 			className='form-container'
-			onSubmit={handleSubmit(saveData, onError)}>
+			onSubmit={handleSubmit(onSubmit, onError)}>
 			<div className='fields-container'>{returnStep()}</div>
 			<div className='button-container'>
 				<Button
-					onClick={previousStep}
+					onClick={(event) => changeStep(event)}
 					disabled={step === 1 ? true : false}
 					variant='contained'
 					color='secondary'>
@@ -121,7 +121,7 @@ const Multiform: React.FC = () => {
 				{step !== 3 ? (
 					<Button
 						type='submit'
-						onClick={(event) => nextStep(event)}
+						onClick={(event) => changeStep(event, '+')}
 						disabled={step === 3 ? true : false}
 						variant='contained'
 						color='primary'>
