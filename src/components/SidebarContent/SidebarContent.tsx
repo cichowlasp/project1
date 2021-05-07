@@ -85,6 +85,7 @@ const SidebarContent: React.FC = () => {
 interface darkMode {
 	darkMode: Boolean;
 }
+
 const SidebarContentStyle = css<darkMode>`
 	display: flex;
 	justify-content: center;

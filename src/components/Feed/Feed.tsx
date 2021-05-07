@@ -78,8 +78,8 @@ const Feed: React.FC<FuncProps> = ({
 };
 
 const Container = styled.div`
-	padding: 5vh;
 	display: flex;
+	padding: 5vh;
 	width: 40%;
 	flex-direction: column;
 	justify-content: flex-start;

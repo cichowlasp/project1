@@ -136,11 +136,11 @@ const Content = styled.div<darkMode>`
 	background-color: ${({ darkMode }) => (darkMode ? DarkMode : WhiteMode)};
 	margin: 1rem 0 1rem 1rem;
 	margin: 0 1rem 1rem 1rem;
-	height: 100%;
 	overflow: auto;
 	justify-content: center;
 	border-radius: 10px;
 	box-shadow: 0 0 1em ${GreyColor};
+	height: 100vh;
 `;
 
 export default Router;
