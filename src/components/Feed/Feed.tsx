@@ -15,6 +15,7 @@ interface data {
 	servicedASS: boolean;
 	color: string;
 	condition: string;
+	owners: string[];
 }
 
 interface FuncProps {

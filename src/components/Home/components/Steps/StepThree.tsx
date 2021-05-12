@@ -16,6 +16,7 @@ import {
 	DeepMap,
 	FieldError,
 } from 'react-hook-form';
+import OwnersInput from '../OwnersInput/OwnersInput';
 
 interface FuncProps {
 	register: UseFormRegister<FieldValues>;
@@ -131,6 +132,21 @@ const StepThree: React.FC<FuncProps> = ({
 						shouldValidate: validation,
 					})
 				}
+			/>
+			<OwnersInput
+				label='Owner name'
+				error={errors.owner}
+				key={'owners'}
+				style={{ color: 'white' }}
+				helperText={
+					errors.owner
+						? 'This field is required(min 3 letters and max 20)'
+						: ''
+				}
+				setValue={setValue}
+				validation={validation}
+				register={register}
+				getValues={getValues}
 			/>
 		</>
 	);

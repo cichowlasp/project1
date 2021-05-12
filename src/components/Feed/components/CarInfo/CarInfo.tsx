@@ -38,6 +38,7 @@ interface FuncProps {
 		productionDate: Moment;
 		servicedASS: boolean;
 		vehicleOperation: number;
+		owners: string[];
 	};
 }
 const CarInfo: React.FC<FuncProps> = ({ car }) => {
@@ -100,6 +101,14 @@ const CarInfo: React.FC<FuncProps> = ({ car }) => {
 					<div>
 						Color: <span>{car.color}</span>
 					</div>
+					<div>
+						Owners:{' '}
+						<span>
+							{car?.owners?.length
+								? car.owners.join(', ')
+								: 'no informations'}
+						</span>
+					</div>
 				</CarInformation>
 			</AccordionDetails>
 		</Accordion>
@@ -134,7 +143,7 @@ const CarInformation = styled.div<darkMode>`
 		span {
 			font-weight: bold;
 			margin-left: 10px;
-			text-transform: lowercase;
+			text-transform: uppercase;
 		}
 	}
 	@media (max-width: 630px) {
