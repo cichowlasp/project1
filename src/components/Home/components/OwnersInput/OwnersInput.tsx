@@ -47,7 +47,7 @@ const OwnersInput: React.FC<FuncProps> = ({
 	};
 
 	const remove = (index: number) => {
-		const tempOwners = owners.filter((el) => el !== owners[index]);
+		const tempOwners = owners.filter((el, ind) => ind !== index);
 		setOwners(tempOwners);
 		setValue('owners', tempOwners);
 	};
@@ -120,6 +120,7 @@ const Item = styled.div`
 	background-color: #bbbbbb;
 	margin-left: 5px;
 	padding: 5px;
+	min-width: fit-content;
 	.name {
 		margin: 0 0.5vw;
 	}
