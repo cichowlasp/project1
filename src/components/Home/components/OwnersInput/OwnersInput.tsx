@@ -47,7 +47,7 @@ const OwnersInput: React.FC<FuncProps> = ({
 	};
 
 	const remove = (index: number) => {
-		const tempOwners = owners.filter((el, ind) => ind !== index);
+		const tempOwners = owners.filter((_, ind) => ind !== index);
 		setOwners(tempOwners);
 		setValue('owners', tempOwners);
 	};
