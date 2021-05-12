@@ -112,7 +112,7 @@ const Owners = styled.div<darkMode>`
 	width: 100%;
 	align-items: center;
 	color: ${({ darkMode }) => (darkMode ? WhiteMode : DarkMode)};
-	overflow: scroll; /* Show horizontal scrollbar */
+	overflow-x: auto;
 `;
 
 const Item = styled.div`
