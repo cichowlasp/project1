@@ -69,7 +69,7 @@ const StepTwo: React.FC<FuncProps> = ({
 						inputProps={{
 							name: 'Fuel type',
 						}}>
-						<MenuItem value={'disel'}>Disel</MenuItem>
+						<MenuItem value={'disel'}>Diesel</MenuItem>
 						<MenuItem value={'petrol'}>Petrol</MenuItem>
 						<MenuItem value={'petrol+gas'}>Petrol+gas</MenuItem>
 					</TextField>
