@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import {
 	FieldValues,
 	UseFormSetValue,
-	UseFormRegister,
 	UseFormGetValues,
 } from 'react-hook-form';
 import { ThemeContext } from '../../../Context/Context';
@@ -19,8 +18,7 @@ interface FuncProps {
 	};
 	helperText: string;
 	setValue: UseFormSetValue<FieldValues>;
-	validation: boolean;
-	register: UseFormRegister<FieldValues>;
+
 	getValues: UseFormGetValues<FieldValues>;
 }
 
@@ -30,9 +28,9 @@ const OwnersInput: React.FC<FuncProps> = ({
 	key,
 	style,
 	helperText,
-	validation,
+
 	setValue,
-	register,
+
 	getValues,
 }) => {
 	const [owners, setOwners] = useState<string[]>(getValues('owners') || []);
@@ -44,6 +42,13 @@ const OwnersInput: React.FC<FuncProps> = ({
 		setValue('owners', tempOwners);
 		setOwner('');
 		setValue('owner', '');
+	};
+
+	const handleKeypress = (e: React.KeyboardEvent<HTMLDivElement>) => {
+		if (e.key === 'Enter') {
+			e.preventDefault();
+			if (!(owner.trim().length < 3 || error)) handleClick();
+		}
 	};
 
 	const remove = (index: number) => {
@@ -67,6 +72,7 @@ const OwnersInput: React.FC<FuncProps> = ({
 						setOwner(event.target.value);
 						setValue('owner', event.target.value);
 					}}
+					onKeyPress={(event) => handleKeypress(event)}
 				/>
 				<Button
 					disabled={owner.trim().length < 3 || error}

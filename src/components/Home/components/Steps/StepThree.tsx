@@ -144,8 +144,6 @@ const StepThree: React.FC<FuncProps> = ({
 						: ''
 				}
 				setValue={setValue}
-				validation={validation}
-				register={register}
 				getValues={getValues}
 			/>
 		</>
